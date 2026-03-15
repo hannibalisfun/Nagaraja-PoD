@@ -1,0 +1,25 @@
+﻿##############################
+# Nagaraja Submod On Actions
+##############################
+
+# This MERGES additively with the existing POD_vampire_flavor_on_action.
+# CK3 on_actions are additive across mods.
+# Feature 5: The Flesh-Eater's Risk random event hook.
+
+POD_vampire_flavor_on_action = {
+	effect = {
+		if = {
+			limit = {
+				is_nagaraja_trigger = yes
+				NOT = { has_character_flag = podnagaraja_flesh_eater_cooldown }
+			}
+			random = {
+				chance = 10
+				trigger_event = {
+					id = podnagaraja.400
+					days = { 45 150 }
+				}
+			}
+		}
+	}
+}

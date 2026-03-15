@@ -1,0 +1,47 @@
+﻿l_english:
+
+ # ============================
+ # Feature 1: Purge the Serpent
+ # ============================
+
+ purge_serpent_india_decision: "Purge the Serpent from India"
+ purge_serpent_india_decision_tooltip: "Drive all Setite and Daitya rulers from the courts of India and Tibet to claim dominance over the subcontinent"
+ purge_serpent_india_decision_desc: "The followers of Sutekh -- the Setites and the Daitya -- have long coiled their influence through the courts of India and the monasteries of Tibet. As a Nagaraja, it falls to us to cleanse our homeland of their corrupting presence and establish our dominance over the subcontinent."
+ purge_serpent_india_decision_confirm: "The Daitya will know fear"
+ purge_serpent_capital_requirement: "Your capital must be in India or Tibet"
+ purge_serpent_no_setite_india: "No Setite or Daitya may hold a county or higher title in India"
+ purge_serpent_no_setite_tibet: "No Setite or Daitya may hold a county or higher title in Tibet"
+ purge_serpent_effect_tooltip: "You will be hailed as the Scourge of Sutekh and receive great rewards"
+
+ # ============================
+ # Feature 2: Pilgrimage to Enoch
+ # ============================
+
+ pilgrimage_to_enoch_decision: "Pilgrimage to Enoch"
+ pilgrimage_to_enoch_decision_tooltip: "Journey through the Shadowlands to the ghost-city of Enoch and return with forbidden knowledge"
+ pilgrimage_to_enoch_decision_desc: "The ghost-city of Enoch lies deep within the Underworld, a place of terrible power and forbidden knowledge. With mastery of Necromancy and the backing of a loyal coterie, you can make the perilous journey there and return with wisdom beyond mortal comprehension."
+ pilgrimage_to_enoch_decision_confirm: "Into the Shadowlands"
+ pilgrimage_to_enoch_coterie_requirement: "You must have an active coterie"
+ pilgrimage_to_enoch_effect_tooltip: "Begin a dangerous spiritual journey to the ghost-city of Enoch in the Underworld"
+
+ # ============================
+ # Feature 4: Silent Conclave
+ # ============================
+
+ convene_silent_conclave_decision: "Convene a Silent Conclave"
+ convene_silent_conclave_decision_tooltip: "Host a secret gathering of Nagaraja elders to exchange knowledge and perform dark rituals"
+ convene_silent_conclave_decision_desc: "The Silent Conclave is a secret gathering of Nagaraja, where forbidden knowledge is exchanged and dark rituals performed in service of the clan. Such gatherings are rare, dangerous, and supremely valuable."
+ convene_silent_conclave_decision_confirm: "Let us gather"
+ convene_silent_conclave_effect_tooltip: "Host a secret gathering of Nagaraja to exchange knowledge and perform dark rituals"
+
+ # ============================
+ # Feature 6: Recruit Sorcerer
+ # ============================
+
+ recruit_itarajana_sorcerer_decision: "Recruit an Itarajana Sorcerer"
+ recruit_itarajana_sorcerer_decision_tooltip: "Seek out a practitioner of Itarajana blood sorcery and bind them as a ghoul in your service"
+ recruit_itarajana_sorcerer_decision_desc: "The Itarajana tradition of blood sorcery draws upon Hindu mystical practices and is native to the Indian subcontinent. A skilled practitioner, properly bound as a ghoul, could prove an invaluable asset to our court."
+ recruit_itarajana_sorcerer_decision_confirm: "Their knowledge will serve us"
+ recruit_itarajana_region_requirement: "Your capital must be in India, Tibet, the Middle East, or Central Asia"
+ recruit_itarajana_max_cap: "You cannot have more than 3 Itarajana Sorcerers at your court"
+ recruit_itarajana_effect_tooltip: "A ghoul practitioner of Itarajana sorcery will join your court"

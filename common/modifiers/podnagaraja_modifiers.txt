@@ -1,0 +1,77 @@
+﻿##############################
+# Nagaraja Submod Modifiers
+##############################
+
+# ============================
+# Feature 1: Purge the Serpent
+# ============================
+
+scourge_of_sutekh_modifier = {
+	icon = prowess_positive
+	Martial = 3
+	enemy_hostile_scheme_phase_duration_add = 10
+	murder_scheme_phase_duration_add = -10
+	same_faith_opinion = 15
+}
+
+# ============================
+# Feature 3: Send Childe to Enoch
+# ============================
+
+dutiful_sire_modifier = {
+	icon = prestige_positive
+	dynasty_opinion = 20
+	monthly_dynasty_prestige_mult = 1.0
+}
+
+# ============================
+# Feature 4: Silent Conclave
+# ============================
+
+silent_conclave_insight_modifier = {
+	icon = intrigue_positive
+	intrigue = 2
+	enemy_hostile_scheme_success_chance_add = -10
+}
+
+silent_conclave_offering_modifier = {
+	icon = learning_positive
+	learning = 2
+	monthly_necro_magic_lifestyle_xp_gain_mult = 0.15
+}
+
+# ============================
+# Feature 5: Flesh-Eater's Risk
+# ============================
+
+careful_feeding_modifier = {
+	icon = health_positive
+	intrigue  = 2
+}
+
+reckless_feeding_satisfied_modifier = {
+	icon = prowess_positive
+	prowess_no_portrait = 2
+	dread_baseline_add = 5
+}
+
+endure_hunger_modifier = {
+	icon = stress_positive
+	stress_gain_mult = 0.15
+	monthly_learning_lifestyle_xp_gain_mult = 0.10
+}
+
+evidence_discovered_modifier = {
+	icon = intrigue_negative
+	enemy_hostile_scheme_success_chance_add = 10
+}
+
+# ============================
+# Feature 6: Itarajana Sorcerer
+# ============================
+
+itarajana_research_modifier = {
+	icon = learning_positive
+	monthly_learning_lifestyle_xp_gain_mult = 0.10
+	monthly_necro_magic_lifestyle_xp_gain_mult = 0.10
+}

@@ -1,0 +1,10 @@
+﻿l_english:
+
+ # Nickname
+ nick_scourge_of_sutekh: "the Scourge of Sutekh"
+
+ # Character Interaction
+ podnagaraja_send_childe_to_enoch_interaction: "Send to Enoch"
+ podnagaraja_send_childe_to_enoch_interaction_desc: "Send this Nagaraja dynasty member on a one-way journey to the ghost-city of Enoch in the Underworld, where they will serve our clan's interests from beyond the Shroud."
+ send_childe_to_enoch_effect_tooltip: "Your childe will depart for the Underworld, never to return. You will gain a modifier and dynasty prestige."
+ send_childe_to_enoch_not_primary_heir: "Cannot send your primary heir to Enoch"

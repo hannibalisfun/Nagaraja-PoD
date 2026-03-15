@@ -1,0 +1,5 @@
+﻿##############################
+# Nagaraja Submod Nicknames
+##############################
+
+nick_scourge_of_sutekh = {}

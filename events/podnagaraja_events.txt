@@ -1,0 +1,774 @@
+﻿##############################
+# Nagaraja Submod Events
+##############################
+
+namespace = podnagaraja
+
+
+#####################################################
+# FEATURE 1: PURGE THE SERPENT FROM INDIA
+# Events podnagaraja.1-2
+#####################################################
+
+# Victory Celebration
+# Triggered by: purge_serpent_india_decision effect block
+podnagaraja.1 = {
+	type = character_event
+	window = fullscreen_event
+	title = podnagaraja.1.t
+	desc = podnagaraja.1.desc
+	theme = vampire
+	override_background = { reference = throne_room }
+
+	immediate = {
+	}
+
+	option = {
+		name = podnagaraja.1.a
+
+		add_character_modifier = {
+			modifier = scourge_of_sutekh_modifier
+		}
+		add_prestige = 1500
+		root.dynasty = {
+			add_dynasty_prestige = 1000
+		}
+
+		# Setite/Daitya rulers hate you
+		hidden_effect = {
+			every_ruler = {
+				limit = {
+					has_trait = setite
+				}
+				add_opinion = {
+					modifier = hate_opinion
+					target = scope:serpent_purger
+					opinion = -100
+				}
+			}
+		}
+
+		# Notify other players in India/Tibet
+		hidden_effect = {
+			every_player = {
+				limit = {
+					NOT = { this = root }
+					capital_province = {
+						OR = {
+							geographical_region = world_india
+							geographical_region = world_tibet
+						}
+					}
+				}
+				trigger_event = podnagaraja.2
+			}
+		}
+	}
+}
+
+# Notification event for other players
+podnagaraja.2 = {
+	type = character_event
+	title = podnagaraja.1.t
+	desc = podnagaraja.2.desc
+	theme = vampire
+
+	left_portrait = {
+		character = scope:serpent_purger
+		animation = personality_honorable
+	}
+
+	immediate = {
+	}
+
+	option = {
+		name = podnagaraja.2.a
+	}
+}
+
+
+#####################################################
+# FEATURE 2: PILGRIMAGE TO ENOCH
+# Events podnagaraja.10-13
+#####################################################
+
+# Event 1: Entering the Shadowlands
+# Triggered by: pilgrimage_to_enoch_decision
+podnagaraja.10 = {
+	type = character_event
+	title = podnagaraja.10.t
+	desc = podnagaraja.10.desc
+	theme = vampire
+	override_background = { reference = wilderness_scope }
+
+	left_portrait = {
+		character = root
+		animation = personality_content
+	}
+
+	immediate = {
+	}
+
+	option = {
+		name = podnagaraja.10.a
+		custom_tooltip = podnagaraja.10.a.tt
+		trigger_event = {
+			id = podnagaraja.11
+			days = 14
+		}
+	}
+}
+
+# Event 2: The Tempest
+podnagaraja.11 = {
+	type = character_event
+	title = podnagaraja.11.t
+	desc = podnagaraja.11.desc
+	theme = vampire
+	override_background = { reference = nightcamp }
+
+	left_portrait = {
+		character = root
+		animation = stress
+	}
+
+	immediate = {
+	}
+
+	# Option A: Navigate with Necromancy (safe)
+	option = {
+		name = podnagaraja.11.a
+		custom_tooltip = podnagaraja.11.a.tt
+		add_stress = minor_stress_gain
+		trigger_event = {
+			id = podnagaraja.12
+			days = 14
+		}
+	}
+
+	# Option B: Force your way through (risky)
+	option = {
+		name = podnagaraja.11.b
+		custom_tooltip = podnagaraja.11.b.tt
+		random = {
+			chance = 30
+			add_stress = major_stress_gain
+		}
+		trigger_event = {
+			id = podnagaraja.12
+			days = 7
+		}
+	}
+}
+
+# Event 3: Whispers of the Drowned
+podnagaraja.12 = {
+	type = character_event
+	title = podnagaraja.12.t
+	desc = podnagaraja.12.desc
+	theme = vampire
+	override_background = { reference = sitting_room }
+
+	left_portrait = {
+		character = root
+		animation = thinking
+	}
+
+	immediate = {
+	}
+
+	# Option A: Resist (safer, less reward)
+	option = {
+		name = podnagaraja.12.a
+		add_stress = minor_stress_gain
+		trigger_event = {
+			id = podnagaraja.13
+			days = 14
+		}
+	}
+
+	# Option B: Listen (riskier, more reward)
+	option = {
+		name = podnagaraja.12.b
+		custom_tooltip = podnagaraja.12.b.tt
+		add_character_flag = listened_to_whispers
+		add_learning_lifestyle_xp = 500
+		random = {
+			chance = 25
+			add_stress = major_stress_gain
+		}
+		trigger_event = {
+			id = podnagaraja.13
+			days = 14
+		}
+	}
+}
+
+# Event 4: Gates of Enoch (Final - 3 options)
+podnagaraja.13 = {
+	type = character_event
+	window = fullscreen_event
+	title = podnagaraja.13.t
+	desc = podnagaraja.13.desc
+	theme = vampire
+	override_background = { reference = throne_room }
+
+	immediate = {
+	}
+
+	# Option A: Claim the Pilgrim of Enoch trait
+	option = {
+		name = podnagaraja.13.a
+		custom_tooltip = podnagaraja.13.a.tt
+		if = {
+			limit = {
+				NOT = { has_trait = pilgrim_of_enoch }
+			}
+			add_trait = pilgrim_of_enoch
+		}
+		add_prestige = 500
+		if = {
+			limit = { has_character_flag = listened_to_whispers }
+			add_learning_lifestyle_xp = 1000
+		}
+		hidden_effect = {
+			remove_character_flag = listened_to_whispers
+		}
+	}
+
+	# Option B: Absorb raw knowledge (XP instead of trait)
+	option = {
+		name = podnagaraja.13.b
+		add_learning_lifestyle_xp = 3000
+		if = {
+			limit = { has_character_flag = listened_to_whispers }
+			add_learning_lifestyle_xp = 2000
+		}
+		hidden_effect = {
+			remove_character_flag = listened_to_whispers
+		}
+	}
+
+	# Option C: Surrender to the depths (torpor risk)
+	option = {
+		name = podnagaraja.13.c
+		custom_tooltip = podnagaraja.13.c.tt
+		if = {
+			limit = {
+				NOT = { has_trait = pilgrim_of_enoch }
+			}
+			add_trait = pilgrim_of_enoch
+		}
+		add_learning_lifestyle_xp = 3000
+		add_prestige = 500
+		random = {
+			chance = 40
+			custom_tooltip = podnagaraja.13.c.torpor_risk
+			POD_enter_torpor_effect = yes
+		}
+		hidden_effect = {
+			remove_character_flag = listened_to_whispers
+		}
+	}
+}
+
+
+#####################################################
+# FEATURE 4: CONVENE A SILENT CONCLAVE
+# Events podnagaraja.100-103
+#####################################################
+
+# Event 1: Preparations
+# Triggered by: convene_silent_conclave_decision
+podnagaraja.100 = {
+	type = character_event
+	title = podnagaraja.100.t
+	desc = podnagaraja.100.desc
+	theme = vampire
+	override_background = { reference = sitting_room }
+
+	left_portrait = {
+		character = root
+		animation = personality_rational
+	}
+
+	immediate = {
+	}
+
+	option = {
+		name = podnagaraja.100.a
+		custom_tooltip = podnagaraja.100.a.tt
+		trigger_event = {
+			id = podnagaraja.101
+			days = 30
+		}
+	}
+}
+
+# Event 2: The Gathering
+podnagaraja.101 = {
+	type = character_event
+	title = podnagaraja.101.t
+	desc = podnagaraja.101.desc
+	theme = vampire
+	override_background = { reference = throne_room }
+
+	left_portrait = {
+		character = root
+		animation = personality_content
+	}
+
+	immediate = {
+	}
+
+	# Option A: Focus on intrigue
+	option = {
+		name = podnagaraja.101.a
+		custom_tooltip = podnagaraja.101.a.tt
+		add_character_flag = conclave_intrigue_focus
+		trigger_event = {
+			id = podnagaraja.102
+			days = 7
+		}
+	}
+
+	# Option B: Focus on necromancy
+	option = {
+		name = podnagaraja.101.b
+		custom_tooltip = podnagaraja.101.b.tt
+		add_character_flag = conclave_necromancy_focus
+		trigger_event = {
+			id = podnagaraja.102
+			days = 7
+		}
+	}
+}
+
+# Event 3: The Offering
+podnagaraja.102 = {
+	type = character_event
+	title = podnagaraja.102.t
+	desc = podnagaraja.102.desc
+	theme = vampire
+	override_background = { reference = throne_room }
+
+	left_portrait = {
+		character = root
+		animation = personality_zealous
+	}
+
+	immediate = {
+	}
+
+	# Option A: Offer freely (higher cost, better modifier)
+	option = {
+		name = podnagaraja.102.a
+		add_stress = major_stress_gain
+		if = {
+			limit = { has_character_flag = conclave_necromancy_focus }
+			add_character_modifier = {
+				modifier = silent_conclave_offering_modifier
+				years = 15
+			}
+			add_learning_lifestyle_xp = 1000
+		}
+		if = {
+			limit = { has_character_flag = conclave_intrigue_focus }
+			add_character_modifier = {
+				modifier = silent_conclave_insight_modifier
+				years = 15
+			}
+			add_intrigue_lifestyle_xp = 1000
+		}
+		# Conditional masquerade risk follow-up
+		hidden_effect = {
+			random = {
+				chance = 25
+				trigger_event = {
+					id = podnagaraja.103
+					days = { 30 90 }
+				}
+			}
+			remove_character_flag = conclave_intrigue_focus
+			remove_character_flag = conclave_necromancy_focus
+		}
+	}
+
+	# Option B: Token offering (less stress, weaker benefit)
+	option = {
+		name = podnagaraja.102.b
+		add_stress = minor_stress_gain
+		if = {
+			limit = { has_character_flag = conclave_necromancy_focus }
+			add_learning_lifestyle_xp = 500
+		}
+		if = {
+			limit = { has_character_flag = conclave_intrigue_focus }
+			add_intrigue_lifestyle_xp = 500
+		}
+		hidden_effect = {
+			remove_character_flag = conclave_intrigue_focus
+			remove_character_flag = conclave_necromancy_focus
+		}
+	}
+}
+
+# Event 4: Discovery (conditional masquerade risk)
+podnagaraja.103 = {
+	type = character_event
+	title = podnagaraja.103.t
+	desc = podnagaraja.103.desc
+	theme = vampire
+	override_background = { reference = alley_night }
+
+	left_portrait = {
+		character = root
+		animation = worry
+	}
+
+	immediate = {
+	}
+
+	# Option A: Cover tracks (costs gold, no masquerade hit)
+	option = {
+		name = podnagaraja.103.a
+		remove_short_term_gold = 50
+		custom_tooltip = podnagaraja.103.a.tt
+	}
+
+	# Option B: Scatter (masquerade hit, stress)
+	option = {
+		name = podnagaraja.103.b
+		add_stress = minor_stress_gain
+		POD_change_masquerade_exposure_effect = { DELTA = 1 }
+	}
+}
+
+
+#####################################################
+# FEATURE 6: RECRUIT ITARAJANA SORCERER
+# Events podnagaraja.200-201
+#####################################################
+
+# Sorcerer Arrives
+# Triggered by: recruit_itarajana_sorcerer_decision
+podnagaraja.200 = {
+	type = character_event
+	title = podnagaraja.200.t
+	desc = podnagaraja.200.desc
+	theme = vampire
+	override_background = { reference = sitting_room }
+
+	left_portrait = {
+		character = root
+		animation = personality_content
+	}
+
+	right_portrait = {
+		character = scope:new_sorcerer
+		animation = personality_rational
+	}
+
+	immediate = {
+		hidden_effect = {
+			create_character = {
+				template = podnagaraja_itarajana_sorcerer_template
+				location = root.capital_province
+				faith = root.faith
+				save_scope_as = new_sorcerer
+				after_creation = {
+					POD_become_ghoul_effect = yes
+				}
+			}
+			if = {
+				limit = { exists = scope:new_sorcerer }
+				scope:new_sorcerer = {
+					add_trait = itarajana_sorcerer
+					POD_become_bound_ghoul_effect = { DOMITOR = root }
+				}
+				add_courtier = scope:new_sorcerer
+			}
+		}
+	}
+
+	option = {
+		name = podnagaraja.200.a
+		custom_tooltip = podnagaraja.200.a.tt
+		# Schedule follow-up event in 2-5 years
+		hidden_effect = {
+			trigger_event = {
+				id = podnagaraja.201
+				days = { 730 1825 }
+			}
+		}
+	}
+}
+
+# Sorcerer's Research (follow-up, 2-5 years later)
+podnagaraja.201 = {
+	type = character_event
+	title = podnagaraja.201.t
+	desc = podnagaraja.201.desc
+	theme = vampire
+	override_background = { reference = study }
+
+	left_portrait = {
+		character = root
+		animation = personality_rational
+	}
+
+	trigger = {
+		# Only fire if we still have at least one Itarajana sorcerer
+		any_courtier = {
+			has_trait = itarajana_sorcerer
+		}
+	}
+
+	immediate = {
+		random_courtier = {
+			limit = {
+				has_trait = itarajana_sorcerer
+			}
+			save_scope_as = sorcerer
+		}
+	}
+
+	# Option A: Encourage research (modifier reward)
+	option = {
+		name = podnagaraja.201.a
+		add_character_modifier = {
+			modifier = itarajana_research_modifier
+			years = 10
+		}
+		add_learning_lifestyle_xp = 500
+	}
+
+	# Option B: Exploit knowledge (immediate gain, opinion cost)
+	option = {
+		name = podnagaraja.201.b
+		add_gold = 100
+		add_prestige = 200
+		scope:sorcerer = {
+			add_opinion = {
+				modifier = disappointed_opinion
+				target = root
+				opinion = -30
+			}
+		}
+	}
+}
+
+
+#####################################################
+# FEATURE 3: SEND CHILDE TO ENOCH
+# Events podnagaraja.300
+#####################################################
+
+# Farewell event
+# Triggered by: podnagaraja_send_childe_to_enoch_interaction on_accept
+podnagaraja.300 = {
+	type = character_event
+	title = podnagaraja.300.t
+	desc = podnagaraja.300.desc
+	theme = vampire
+	override_background = { reference = sitting_room }
+
+	left_portrait = {
+		character = root
+		animation = personality_content
+	}
+
+	right_portrait = {
+		character = scope:recipient
+		animation = personality_zealous
+	}
+
+	immediate = {
+	}
+
+	# Option A: Send them to Enoch
+	option = {
+		name = podnagaraja.300.a
+		custom_tooltip = podnagaraja.300.a.tt
+
+		add_character_modifier = {
+			modifier = dutiful_sire_modifier
+			years = 25
+		}
+		root.dynasty = {
+			add_dynasty_prestige = 500
+		}
+
+		hidden_effect = {
+			scope:recipient = {
+				POD_disappearance_effect = yes
+			}
+		}
+	}
+
+	# Option B: Change your mind
+	option = {
+		name = podnagaraja.300.b
+		custom_tooltip = podnagaraja.300.b.tt
+	}
+}
+
+
+#####################################################
+# FEATURE 5: THE FLESH-EATER'S RISK
+# Events podnagaraja.400-401
+#####################################################
+
+# Main feeding event (random, triggered by on_action)
+podnagaraja.400 = {
+	type = character_event
+	title = podnagaraja.400.t
+	desc = podnagaraja.400.desc
+	theme = vampire
+	override_background = { reference = alley_night }
+
+	left_portrait = {
+		character = root
+		animation = stress
+	}
+
+	trigger = {
+		is_nagaraja_trigger = yes
+		NOT = { has_character_flag = podnagaraja_flesh_eater_cooldown }
+	}
+
+	immediate = {
+		add_character_flag = {
+			flag = podnagaraja_flesh_eater_cooldown
+			years = 3
+		}
+	}
+
+	# Option A: Feed carefully (low risk, low reward)
+	option = {
+		name = podnagaraja.400.a
+		add_stress = minor_stress_loss
+		add_character_modifier = {
+			modifier = careful_feeding_modifier
+			years = 2
+		}
+	}
+
+	# Option B: Feed recklessly (high reward, masquerade risk)
+	option = {
+		name = podnagaraja.400.b
+		add_stress = medium_stress_loss
+		add_character_modifier = {
+			modifier = reckless_feeding_satisfied_modifier
+			years = 2
+		}
+		custom_tooltip = podnagaraja.400.b.tt
+		hidden_effect = {
+			random = {
+				chance = 40
+				trigger_event = {
+					id = podnagaraja.401
+					days = { 14 60 }
+				}
+			}
+		}
+	}
+
+	# Option C: Feed on a ghoul (requires having one)
+	option = {
+		name = podnagaraja.400.c
+		trigger = {
+			any_relation = {
+				type = ghoul_thrall
+				count >= 1
+			}
+		}
+		custom_tooltip = podnagaraja.400.c.tt
+		add_stress = minor_stress_loss
+		hidden_effect = {
+			random_relation = {
+				type = ghoul_thrall
+				add_opinion = {
+					modifier = disappointed_opinion
+					target = root
+					opinion = -15
+				}
+			}
+		}
+	}
+
+	# Option D: Endure the hunger (safe, painful)
+	option = {
+		name = podnagaraja.400.d
+		add_stress = medium_stress_gain
+		add_character_modifier = {
+			modifier = endure_hunger_modifier
+			years = 2
+		}
+	}
+}
+
+# Evidence Discovered (follow-up to reckless feeding)
+podnagaraja.401 = {
+	type = character_event
+	title = podnagaraja.401.t
+	desc = podnagaraja.401.desc
+	theme = vampire
+	override_background = { reference = alley_night }
+
+	left_portrait = {
+		character = root
+		animation = worry
+	}
+
+	immediate = {
+	}
+
+	# Option A: Destroy the evidence (costs gold)
+	option = {
+		name = podnagaraja.401.a
+		remove_short_term_gold = 30
+		custom_tooltip = podnagaraja.401.a.tt
+	}
+
+	# Option B: Ignore it (masquerade hit + negative modifier)
+	option = {
+		name = podnagaraja.401.b
+		POD_change_masquerade_exposure_effect = { DELTA = 1 }
+		add_character_modifier = {
+			modifier = evidence_discovered_modifier
+			years = 5
+		}
+	}
+
+	# Option C: Frame someone else (intrigue check)
+	option = {
+		name = podnagaraja.401.c
+		custom_tooltip = podnagaraja.401.c.tt
+		random = {
+			chance = {
+				value = 50
+				add = {
+					value = intrigue
+					multiply = 2
+				}
+			}
+			# Success: no consequences
+			custom_tooltip = podnagaraja.401.c.success
+		}
+		random = {
+			chance = {
+				value = 50
+				subtract = {
+					value = intrigue
+					multiply = 2
+				}
+				min = 5
+			}
+			# Failure: masquerade AND stress
+			custom_tooltip = podnagaraja.401.c.failure
+			POD_change_masquerade_exposure_effect = { DELTA = 1 }
+			add_stress = medium_stress_gain
+		}
+	}
+}

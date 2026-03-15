@@ -1,0 +1,118 @@
+﻿l_english:
+
+ # ============================
+ # Feature 1 Events
+ # ============================
+
+ podnagaraja.1.t: "Purge of the Serpent"
+ podnagaraja.1.desc: "It is done. The last of the Daitya and their Setite cousins have been driven from the courts of India and the highlands of Tibet. No longer will the children of Sutekh whisper their lies in the ears of the subcontinent's rulers. A new age dawns for the Nagaraja -- one where we stand as the undisputed masters of the night in our ancestral homeland."
+ podnagaraja.1.a: "Let them speak of this victory for centuries to come"
+
+ podnagaraja.2.desc: "Word has reached you that a Nagaraja ruler has driven the last of the Setite and Daitya influences from India and Tibet. The balance of power in the region has shifted dramatically."
+ podnagaraja.2.a: "The nights are changing"
+
+ # ============================
+ # Feature 2 Events
+ # ============================
+
+ podnagaraja.10.t: "Entering the Shadowlands"
+ podnagaraja.10.desc: "The Shroud parts before you like a curtain of cold mist. As you step beyond the boundary of the living world, the air grows thick with whispers and the temperature drops to something far beyond cold. The Shadowlands stretch before you -- a grey mirror of the world you have left behind, populated by the restless dead and things far worse."
+ podnagaraja.10.a: "Press onward into the darkness"
+ podnagaraja.10.a.tt: "Your journey through the Underworld continues..."
+
+ podnagaraja.11.t: "The Tempest"
+ podnagaraja.11.desc: "Between the Shadowlands and the deeper reaches of the Underworld lies the Tempest -- a howling maelstrom of spectral energy that has consumed countless souls. Your Necromantic training tells you there are ways through, but none of them are pleasant."
+ podnagaraja.11.a: "Navigate with Necromancy"
+ podnagaraja.11.a.tt: "Your mastery of the dead guides you through the worst of the storm"
+ podnagaraja.11.b: "Force your way through"
+ podnagaraja.11.b.tt: "Brute will alone may not be enough against the Tempest"
+
+ podnagaraja.12.t: "Whispers of the Drowned"
+ podnagaraja.12.desc: "Spectres gather at the edges of your perception, drawn by the warmth of your stolen life-force. They offer knowledge, they offer warnings, they offer lies. It is impossible to tell which is which without risking your sanity."
+ podnagaraja.12.a: "Resist the whispers and press on"
+ podnagaraja.12.b: "Listen to what they have to say"
+ podnagaraja.12.b.tt: "The whispers may contain valuable knowledge... or dangerous madness"
+
+ podnagaraja.13.t: "Gates of Enoch"
+ podnagaraja.13.desc: "Before you rise the impossibly ancient gates of Enoch, the First City, now a ghost of its former glory deep within the Underworld. The air thrums with a power older than recorded history. This is a place where the boundaries between life and death, knowledge and madness, all dissolve. You stand at the threshold of the greatest mystery the Nagaraja have ever known."
+ podnagaraja.13.a: "Claim the wisdom of Enoch"
+ podnagaraja.13.a.tt: "You will gain the Pilgrim of Enoch trait"
+ podnagaraja.13.b: "Absorb the raw knowledge and leave"
+ podnagaraja.13.c: "Surrender yourself to the depths entirely"
+ podnagaraja.13.c.tt: "The greatest rewards demand the greatest risks. You will gain the Pilgrim of Enoch trait and vast knowledge, but risk falling into torpor."
+ podnagaraja.13.c.torpor_risk: "There is a chance you will enter torpor"
+
+ # ============================
+ # Feature 4 Events
+ # ============================
+
+ podnagaraja.100.t: "Preparations"
+ podnagaraja.100.desc: "The Silent Conclave requires careful preparation. Messages must be sent through channels that even other vampires cannot trace, ritual materials gathered from the Underworld, and a secure location identified. The work is tedious but necessary."
+ podnagaraja.100.a: "Begin the preparations"
+ podnagaraja.100.a.tt: "The conclave will gather in one month"
+
+ podnagaraja.101.t: "The Gathering"
+ podnagaraja.101.desc: "They arrive one by one, emerging from shadows and stepping through the Shroud itself. Your fellow Nagaraja, each carrying secrets and knowledge from their own domains. The Silent Conclave is convened. The question is: what shall be its focus?"
+ podnagaraja.101.a: "Focus on matters of intrigue and protection"
+ podnagaraja.101.a.tt: "The conclave will discuss methods of defense and subterfuge"
+ podnagaraja.101.b: "Focus on necromantic studies and rituals"
+ podnagaraja.101.b.tt: "The conclave will explore deeper mysteries of death"
+
+ podnagaraja.102.t: "The Offering"
+ podnagaraja.102.desc: "At the heart of every Silent Conclave lies the Offering -- a ritual that taps into the Nagaraja's unique connection to the Underworld. Flesh must be offered to fuel the rite, as is the way of our clan."
+ podnagaraja.102.a: "Offer freely and generously"
+ podnagaraja.102.b: "Make only a token offering"
+
+ podnagaraja.103.t: "Discovery"
+ podnagaraja.103.desc: "The conclave drew attention. Someone -- mortal or otherwise -- has noticed the gathering and may have witnessed things that should remain hidden. The evidence must be dealt with before the Masquerade is compromised further."
+ podnagaraja.103.a: "Pay to cover our tracks"
+ podnagaraja.103.a.tt: "Spend gold to eliminate the evidence"
+ podnagaraja.103.b: "Scatter and hope for the best"
+
+ # ============================
+ # Feature 6 Events
+ # ============================
+
+ podnagaraja.200.t: "The Itarajana Practitioner"
+ podnagaraja.200.desc: "Word of your search for an Itarajana sorcerer has borne fruit. A practitioner of the ancient Hindu blood sorcery tradition has been located and brought before you. Their knowledge of mystical arts native to the subcontinent could prove invaluable."
+ podnagaraja.200.a: "Welcome them into our service"
+ podnagaraja.200.a.tt: "The sorcerer will be bound as your ghoul and join your court"
+
+ podnagaraja.201.t: "The Sorcerer's Research"
+ podnagaraja.201.desc: "Your Itarajana sorcerer has been conducting research at your court, delving into the intersection of Hindu mysticism and the necromantic arts. They approach you with their findings."
+ podnagaraja.201.a: "Encourage their continued research"
+ podnagaraja.201.b: "Exploit their knowledge for immediate gain"
+
+ # ============================
+ # Feature 3 Events
+ # ============================
+
+ podnagaraja.300.t: "A Journey Beyond Return"
+ podnagaraja.300.desc: "You stand before [recipient.GetFirstNameNoTooltip], your childe, prepared to send them on the most solemn of duties -- a one-way pilgrimage to the ghost-city of Enoch. There, they will serve the clan's interests from beyond the Shroud, maintaining connections that the living cannot."
+ podnagaraja.300.a: "Go forth and serve our clan in the world beyond"
+ podnagaraja.300.a.tt: "[recipient.GetFirstNameNoTooltip] will depart for the Underworld, never to return. You will gain prestige and be honored by your dynasty."
+ podnagaraja.300.b: "I have changed my mind"
+ podnagaraja.300.b.tt: "[recipient.GetFirstNameNoTooltip] remains at your court"
+
+ # ============================
+ # Feature 5 Events
+ # ============================
+
+ podnagaraja.400.t: "The Flesh-Eater's Risk"
+ podnagaraja.400.desc: "The hunger gnaws. Not the mere thirst for blood that afflicts lesser vampires, but the deeper, more terrible craving that defines the Nagaraja -- the need for living flesh. The curse demands to be sated, and the longer you resist, the more dangerous the eventual feeding becomes."
+ podnagaraja.400.a: "Feed carefully, stalking a victim with precision"
+ podnagaraja.400.b: "Feed recklessly and sate the hunger fully"
+ podnagaraja.400.b.tt: "There is a risk that evidence of your feeding will be discovered"
+ podnagaraja.400.c: "Feed on one of my ghouls instead"
+ podnagaraja.400.c.tt: "Safe, but your ghoul will not appreciate it"
+ podnagaraja.400.d: "Endure the hunger through sheer will"
+
+ podnagaraja.401.t: "Evidence Discovered"
+ podnagaraja.401.desc: "Your reckless feeding has left traces. Someone has found evidence -- perhaps remains, perhaps witnesses, perhaps something worse. The evidence threatens to expose your monstrous nature to those who should never know."
+ podnagaraja.401.a: "Pay to have the evidence destroyed"
+ podnagaraja.401.a.tt: "Spend gold to make the problem go away"
+ podnagaraja.401.b: "Ignore it and move on"
+ podnagaraja.401.c: "Frame someone else for the deed"
+ podnagaraja.401.c.tt: "Your Intrigue skill will determine the outcome"
+ podnagaraja.401.c.success: "You successfully frame someone else"
+ podnagaraja.401.c.failure: "Your attempt to frame someone else fails"
