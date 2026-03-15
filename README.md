@@ -18,7 +18,7 @@ A major objective decision allowing Nagaraja rulers to claim dominance over the 
 
 **Rewards:**
 - "Scourge of Sutekh" nickname and modifier (+3 Martial, +10 hostile scheme duration, -10 murder scheme duration, +15 same faith opinion)
-- 1,500 personal prestige and 1,000 dynasty prestige
+- 1,500 personal prestige and 1,000 renown
 - All Setite rulers suffer -100 opinion towards the player
 
 ---
@@ -42,8 +42,8 @@ A character interaction that sends a dynasty member on a one-way pilgrimage to s
 **Requirements:** Nagaraja ruler with Talmahera faith and Nagaraja Legacy 3 perk. The childe must be an adult Nagaraja courtier of the same dynasty who is not the primary heir.
 
 **Rewards:**
-- "Dutiful Sire" modifier (+20 dynasty opinion, +1.0 monthly dynasty prestige multiplier for 25 years)
-- 500 dynasty prestige
+- "Dutiful Sire" modifier (+20 dynasty opinion, +1.0 monthly renown multiplier for 25 years)
+- 500 renown
 
 ---
 
