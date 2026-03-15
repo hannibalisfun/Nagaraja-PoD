@@ -4,7 +4,7 @@ tags={
 }
 name="Nagaraja: Sentinels of the Eastern Hand"
 supported_version="1.18.*"
-path="mod/nagaraja_submod"
+path="mod/Nagaraja-PoD"
 dependencies={
 	"Princes of Darkness"
 }
