@@ -139,10 +139,6 @@ pilgrimage_to_enoch_decision = {
 			has_dynasty_perk = nagaraja_legacy_3
 		}
 		has_trait = necromancyadvanced
-		custom_tooltip = {
-			text = pilgrimage_to_enoch_coterie_requirement
-			has_variable = coterie
-		}
 	}
 
 	is_valid_showing_failures_only = {
@@ -232,7 +228,7 @@ recruit_itarajana_sorcerer_decision = {
 
 	cooldown = { years = 10 }
 
-	cost = { gold = 75 }
+	cost = { gold = 200 }
 
 	is_shown = {
 		is_nagaraja_trigger = yes

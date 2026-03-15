@@ -484,6 +484,8 @@ podnagaraja.200 = {
 				limit = { exists = scope:new_sorcerer }
 				scope:new_sorcerer = {
 					add_trait = itarajana_sorcerer
+					add_trait = sorcerer
+					add_sorcery_lifestyle_perk_points = 10
 					POD_become_bound_ghoul_effect = { DOMITOR = root }
 				}
 				add_courtier = scope:new_sorcerer

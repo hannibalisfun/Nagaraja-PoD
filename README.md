@@ -59,8 +59,8 @@ An event chain representing a secret gathering of Nagaraja elders to exchange kn
 - 25% chance of masquerade exposure requiring gold or risk
 
 **Modifiers:**
-- Silent Conclave Insight: +2 Intrigue, -10 hostile scheme success chance (15 years)
-- Silent Conclave Offering: +2 Learning, +0.15 necromancy lifestyle XP (15 years)
+- Silent Conclave Insight: +2 Intrigue, -10% hostile scheme success chance (15 years)
+- Silent Conclave Offering: +2 Learning, +15% necromancy lifestyle XP (15 years)
 
 ---
 
