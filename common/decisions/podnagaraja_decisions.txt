@@ -112,12 +112,12 @@ purge_serpent_india_decision = {
 
 #####################################################
 # Feature 2: Pilgrimage to Enoch
-# Decision-triggered event chain
+# Decision starts a POD Journey (planning phase -> travel phase -> events)
 #####################################################
 
 pilgrimage_to_enoch_decision = {
 	picture = {
-		reference = "gfx/interface/illustrations/decisions/decision_dynasty_house.dds"
+		reference = "gfx/interface/illustrations/decisions/decision_personal_religious.dds"
 	}
 	decision_group_type = major
 
@@ -147,12 +147,13 @@ pilgrimage_to_enoch_decision = {
 	}
 
 	effect = {
-		add_character_flag = {
-			flag = pilgrimage_to_enoch_cooldown
-			years = 100
-		}
+		# Permanent flag — pilgrimage can only be undertaken once
+		add_character_flag = pilgrimage_to_enoch_cooldown
 		custom_tooltip = pilgrimage_to_enoch_effect_tooltip
-		trigger_event = podnagaraja.10
+		POD_start_journey_effect = {
+			TYPE    = flag:pilgrimage_to_enoch
+			MONTHLY = flag:two_years
+		}
 	}
 
 	ai_potential = {

@@ -21,7 +21,7 @@
  pilgrimage_to_enoch_decision_tooltip: "Journey through the Shadowlands to the ghost-city of Enoch and return with forbidden knowledge"
  pilgrimage_to_enoch_decision_desc: "The ghost-city of Enoch lies deep within the Underworld, a place of terrible power and forbidden knowledge. With mastery of Necromancy and the backing of a loyal coterie, you can make the perilous journey there and return with wisdom beyond mortal comprehension."
  pilgrimage_to_enoch_decision_confirm: "Into the Shadowlands"
- pilgrimage_to_enoch_effect_tooltip: "Begin a dangerous spiritual journey to the ghost-city of Enoch in the Underworld"
+ pilgrimage_to_enoch_effect_tooltip: "Begin a [journey|E] to the ghost-city of Enoch in the Underworld"
 
  # ============================
  # Feature 4: Silent Conclave

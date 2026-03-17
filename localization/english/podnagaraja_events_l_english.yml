@@ -12,35 +12,123 @@
  podnagaraja.2.a: "The nights are changing"
 
  # ============================
- # Feature 2 Events
+ # Feature 2 Events (Journey)
+ # Events 10-21: Pilgrimage to Enoch
  # ============================
 
- podnagaraja.10.t: "Entering the Shadowlands"
- podnagaraja.10.desc: "The Shroud parts before you like a curtain of cold mist. As you step beyond the boundary of the living world, the air grows thick with whispers and the temperature drops to something far beyond cold. The Shadowlands stretch before you -- a grey mirror of the world you have left behind, populated by the restless dead and things far worse."
- podnagaraja.10.a: "Press onward into the darkness"
- podnagaraja.10.a.tt: "Your journey through the Underworld continues..."
+ # --- Event 10: Arrival/Setup ---
+ podnagaraja.10.t: "The Shroud Parts"
+ podnagaraja.10.desc: "The rituals are complete, the preparations made. As the Shroud parts before you like a curtain of cold mist, the Underworld opens its maw. The air grows thick with whispers and the temperature drops to something far beyond cold. The path to Enoch lies ahead -- treacherous, unknowable, and filled with things that even a Nagaraja should fear."
+ podnagaraja.10.a: "Begin the descent"
+ podnagaraja.10.a.tt: "Your pilgrimage through the Underworld begins..."
 
- podnagaraja.11.t: "The Tempest"
- podnagaraja.11.desc: "Between the Shadowlands and the deeper reaches of the Underworld lies the Tempest -- a howling maelstrom of spectral energy that has consumed countless souls. Your Necromantic training tells you there are ways through, but none of them are pleasant."
- podnagaraja.11.a: "Navigate with Necromancy"
- podnagaraja.11.a.tt: "Your mastery of the dead guides you through the worst of the storm"
- podnagaraja.11.b: "Force your way through"
- podnagaraja.11.b.tt: "Brute will alone may not be enough against the Tempest"
+ # --- Event 12: Entering the Shadowlands (Pool) ---
+ podnagaraja.12.t: "Entering the Shadowlands"
+ podnagaraja.12.desc: "The Shadowlands stretch before you -- a grey mirror of the world you left behind, populated by the restless dead and things far worse. The boundary between the living world and the deeper Underworld is thin here. Your Nagaraja blood sings in recognition."
+ podnagaraja.12.a: "Focus on the path"
+ podnagaraja.12.b: "Open my senses to the dead"
+ podnagaraja.12.b.tt: "A Learning check determines the outcome"
+ podnagaraja.12.b.success: "Your senses expand. The dead whisper useful truths."
+ podnagaraja.12.b.failure: "The flood of spectral sensation overwhelms you momentarily."
 
- podnagaraja.12.t: "Whispers of the Drowned"
- podnagaraja.12.desc: "Spectres gather at the edges of your perception, drawn by the warmth of your stolen life-force. They offer knowledge, they offer warnings, they offer lies. It is impossible to tell which is which without risking your sanity."
- podnagaraja.12.a: "Resist the whispers and press on"
- podnagaraja.12.b: "Listen to what they have to say"
- podnagaraja.12.b.tt: "The whispers may contain valuable knowledge... or dangerous madness"
+ # --- Event 13: The Tempest (Pool) ---
+ podnagaraja.13.t: "The Tempest"
+ podnagaraja.13.desc: "Between the Shadowlands and the deeper reaches of the Underworld lies the Tempest -- a howling maelstrom of spectral energy that has consumed countless souls. It batters you with winds that carry the screams of the damned. There are ways through, but none of them are pleasant."
+ podnagaraja.13.a: "Press through with discipline"
+ podnagaraja.13.a.tt: "A Prowess check determines the outcome"
+ podnagaraja.13.a.success: "You force your way through the worst of the storm."
+ podnagaraja.13.a.failure: "The Tempest batters you mercilessly."
+ podnagaraja.13.b: "Use necromancy to calm the dead winds"
+ podnagaraja.13.b.tt: "Advanced Necromancy guarantees success"
+ podnagaraja.13.b.success: "Your mastery of the dead quiets the storm around you."
+ podnagaraja.13.b.failure: "Your necromantic skill is insufficient to tame the Tempest."
+ podnagaraja.13.c: "Wait for it to pass"
 
- podnagaraja.13.t: "Gates of Enoch"
- podnagaraja.13.desc: "Before you rise the impossibly ancient gates of Enoch, the First City, now a ghost of its former glory deep within the Underworld. The air thrums with a power older than recorded history. This is a place where the boundaries between life and death, knowledge and madness, all dissolve. You stand at the threshold of the greatest mystery the Nagaraja have ever known."
- podnagaraja.13.a: "Claim the wisdom of Enoch"
- podnagaraja.13.a.tt: "You will gain the Pilgrim of Enoch trait"
- podnagaraja.13.b: "Absorb the raw knowledge and leave"
- podnagaraja.13.c: "Surrender yourself to the depths entirely"
- podnagaraja.13.c.tt: "The greatest rewards demand the greatest risks. You will gain the Pilgrim of Enoch trait and vast knowledge, but risk falling into torpor."
- podnagaraja.13.c.torpor_risk: "There is a chance you will enter torpor"
+ # --- Event 14: Whispers of the Drowned (Pool) ---
+ podnagaraja.14.t: "Whispers of the Drowned"
+ podnagaraja.14.desc: "Spectres gather at the edges of your perception, drawn by the warmth of your stolen life-force. Ghosts of those consumed by the Nagaraja over centuries -- they remember what was done to them. They offer knowledge, warnings, lies. It is impossible to tell which is which."
+ podnagaraja.14.a: "Command them to guide me"
+ podnagaraja.14.a.tt: "An Intrigue check determines the outcome"
+ podnagaraja.14.a.success: "The spectres bend to your will and reveal useful paths."
+ podnagaraja.14.a.failure: "The spectres resist your commands with spite."
+ podnagaraja.14.b: "Ignore them and walk on"
+ podnagaraja.14.c: "Devour their ectoplasm for strength"
+ podnagaraja.14.c.tt: "Sate your hunger on spectral essence"
+
+ # --- Event 15: The False Necropolis (Pool) ---
+ podnagaraja.15.t: "The False Necropolis"
+ podnagaraja.15.desc: "A vast city rises from the spectral fog -- towers, walls, gates that look impossibly ancient. For a moment, your blood surges with recognition. Enoch? No. Something is wrong. The proportions are subtly off, the architecture a convincing forgery. This is a trap, built to ensnare pilgrims who do not know the true city."
+ podnagaraja.15.a: "Investigate cautiously -- there may be useful salvage"
+ podnagaraja.15.a.tt: "A Learning check determines the outcome"
+ podnagaraja.15.a.success: "Among the debris, you find a journal left by a previous pilgrim."
+ podnagaraja.15.a.failure: "The false city's defenses catch you off guard."
+ podnagaraja.15.b: "Avoid it entirely"
+ podnagaraja.15.c: "Destroy it so no other Nagaraja falls for this trick"
+
+ # --- Event 16: A Spectral Anomaly (Pool) ---
+ podnagaraja.16.t: "A Spectral Anomaly"
+ podnagaraja.16.desc: "A pocket of raw Underworld energy blocks the path ahead -- a churning vortex of spectral force that warps the very fabric of the Shadowlands around it. The dead avoid this place. Even wraiths give it a wide berth."
+ podnagaraja.16.a: "Go through it"
+ podnagaraja.16.a.tt: "A Prowess check determines the outcome"
+ podnagaraja.16.a.success: "The energy scours you but leaves you stronger."
+ podnagaraja.16.a.failure: "The anomaly tears at your essence."
+ podnagaraja.16.b: "Go around"
+ podnagaraja.16.c: "Study the anomaly from a safe distance"
+ podnagaraja.16.c.tt: "A Learning check determines the outcome"
+ podnagaraja.16.c.success: "You glean insights into the nature of the Underworld."
+ podnagaraja.16.c.failure: "The anomaly defies comprehension."
+
+ # --- Event 17: The Wraith Market (Pool) ---
+ podnagaraja.17.t: "The Wraith Market"
+ podnagaraja.17.desc: "A gathering of wraiths trading among themselves in a hollow between the Tempest winds. They deal in memories, regrets, and fragments of the living world. Some of them have been here since before the fall of Rome. They eye you with a mixture of fear and hunger -- the Nagaraja are known to the dead."
+ podnagaraja.17.a: "Trade gold for intelligence"
+ podnagaraja.17.b: "Devour one of them"
+ podnagaraja.17.b.tt: "Sate your hunger, but the dead will remember"
+ podnagaraja.17.c: "Ignore them and press on"
+
+ # --- Event 18: Echoes of the Silk Road (Pool) ---
+ podnagaraja.18.t: "Echoes of the Silk Road"
+ podnagaraja.18.desc: "The path passes through the spectral echo of a destroyed Silk Road city. Ghostly merchants still ply their wares in an endless loop, unaware that they and their city perished centuries ago. The buildings shimmer with faded grandeur, and somewhere deep in the ruins, something old waits."
+ podnagaraja.18.a: "Search the ruins for hidden knowledge"
+ podnagaraja.18.a.tt: "A Learning check determines the outcome"
+ podnagaraja.18.a.success: "You uncover forgotten lore among the spectral ruins."
+ podnagaraja.18.a.failure: "The ruins yield nothing but dust and disappointment."
+ podnagaraja.18.b: "Investigate the ghostly inhabitants"
+ podnagaraja.18.b.tt: "A Diplomacy check determines the outcome"
+ podnagaraja.18.b.success: "The ghosts share memories of dynasties long forgotten."
+ podnagaraja.18.b.failure: "The ghosts recoil from your presence."
+ podnagaraja.18.c: "Record what I see and move on"
+
+ # --- Event 19: A Fellow Traveler (Pool) ---
+ podnagaraja.19.t: "A Fellow Traveler"
+ podnagaraja.19.desc: "A figure emerges from the spectral fog -- another Nagaraja, returning from Enoch on a Tal'Mahe'Ra mission. She is gaunt, her eyes hollow from the journey, but she carries herself with the quiet confidence of one who has survived the deep Underworld. She offers to share intelligence."
+ podnagaraja.19.a: "Share intelligence freely -- we are kin"
+ podnagaraja.19.a.tt: "There is a small risk she may not be what she seems"
+ podnagaraja.19.b: "Trade information for information"
+ podnagaraja.19.b.tt: "An Intrigue check determines the outcome"
+ podnagaraja.19.b.success: "A fair exchange. You learn things of value."
+ podnagaraja.19.b.failure: "She gives you nothing useful."
+ podnagaraja.19.c: "Decline her company -- I travel alone"
+ podnagaraja.19.d: "She looks hungry -- offer to share my Viscus supplies"
+ podnagaraja.19.d.tt: "Your generosity will be remembered by the clan"
+
+ # --- Event 20: Gates of Enoch (Final) ---
+ podnagaraja.20.t: "The Gates of Enoch"
+ podnagaraja.20.desc: "Before you rise the impossibly ancient gates of Enoch, the First City, now a ghost of its former glory deep within the Underworld. The air thrums with a power older than recorded history. This is a place where the boundaries between life and death, knowledge and madness, all dissolve. You stand at the threshold of the greatest mystery the Nagaraja have ever known. The Del'Roh's servants watch from the shadows, measuring your worth."
+ podnagaraja.20.a: "Enter and pay respects to the Del'Roh"
+ podnagaraja.20.a.tt: "You will gain the Pilgrim of Enoch trait, prestige, and dynasty prestige"
+ podnagaraja.20.b: "Enter and study the libraries of Brujah"
+ podnagaraja.20.c: "Remain in Enoch and serve"
+ podnagaraja.20.c.tt: "You will enter torpor, gain the Pilgrim of Enoch trait, and earn great dynasty prestige"
+
+ # --- Event 21: Fellow Traveler Spy Follow-up ---
+ podnagaraja.21.t: "A Betrayal in the Shadows"
+ podnagaraja.21.desc: "Something is wrong. Intelligence you shared with the fellow traveler has surfaced in places it should not have. Either she was not who she claimed, or she traded your secrets to others. The damage may already be done."
+ podnagaraja.21.a: "Investigate the betrayal"
+ podnagaraja.21.a.tt: "An Intrigue check determines the outcome"
+ podnagaraja.21.a.success: "You detect the deception before real harm is done."
+ podnagaraja.21.a.failure: "Your secrets have already spread. The damage is real."
+ podnagaraja.21.b: "Let it go -- some information is expendable"
 
  # ============================
  # Feature 4 Events

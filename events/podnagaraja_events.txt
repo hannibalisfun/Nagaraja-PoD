@@ -88,18 +88,176 @@ podnagaraja.2 = {
 
 
 #####################################################
-# FEATURE 2: PILGRIMAGE TO ENOCH
-# Events podnagaraja.10-13
+# FEATURE 2: PILGRIMAGE TO ENOCH (Journey)
+# Events podnagaraja.10-21
+# Started via pilgrimage_to_enoch_decision -> Journey system
+# Travel phase triggers podnagaraja.10 on arrival
+#
+# Flow:
+#   10 (arrival/setup) -> 11 (dispatch) -> [pool 12-19] -> 11 -> ... -> 20 (final)
+#   Pool: 8 events, 4-5 randomly selected per journey
+#   21: Fellow Traveler spy follow-up
 #####################################################
 
-# Event 1: Entering the Shadowlands
-# Triggered by: pilgrimage_to_enoch_decision
+# ===== ARRIVAL & DISPATCH =====
+
+# Arrival event — sets up the journey and chains to dispatch
+# Triggered by: pilgrimage_to_enoch_travel_phase SGUI
 podnagaraja.10 = {
 	type = character_event
 	title = podnagaraja.10.t
 	desc = podnagaraja.10.desc
 	theme = vampire
-	override_background = { reference = wilderness_scope }
+	override_background = { reference = wilderness }
+
+	left_portrait = {
+		character = root
+		animation = personality_content
+	}
+
+	immediate = {
+		POD_pause_journey_travel_plan_effect = yes
+		hidden_effect = {
+			# Initialize event counter
+			set_variable = {
+				name = pilgrimage_events_fired
+				value = 0
+			}
+			# Randomly decide how many pool events (4 or 5)
+			random_list = {
+				50 = {
+					set_variable = {
+						name = pilgrimage_events_target
+						value = 4
+					}
+				}
+				50 = {
+					set_variable = {
+						name = pilgrimage_events_target
+						value = 5
+					}
+				}
+			}
+		}
+	}
+
+	option = {
+		name = podnagaraja.10.a
+		custom_tooltip = podnagaraja.10.a.tt
+		hidden_effect = {
+			trigger_event = {
+				id = podnagaraja.12
+				days = { 30 60 }
+			}
+		}
+	}
+}
+
+# Hidden dispatch event — picks next random pool event or fires final
+podnagaraja.11 = {
+	hidden = yes
+
+	trigger = {
+		is_alive = yes
+	}
+
+	immediate = {
+		if = {
+			limit = {
+				var:pilgrimage_events_fired >= var:pilgrimage_events_target
+			}
+			# All pool events done — fire the final Gates of Enoch event
+			trigger_event = {
+				id = podnagaraja.20
+				days = { 60 120 }
+			}
+		}
+		else = {
+			# Pick a random unfired pool event
+			random_list = {
+				# Entering the Shadowlands
+
+				# The Tempest
+				10 = {
+					trigger = { NOT = { has_character_flag = pilgrimage_evt_tempest } }
+					add_character_flag = pilgrimage_evt_tempest
+					trigger_event = {
+						id = podnagaraja.13
+						days = { 30 90 }
+					}
+				}
+				# Whispers of the Drowned
+				10 = {
+					trigger = { NOT = { has_character_flag = pilgrimage_evt_whispers } }
+					add_character_flag = pilgrimage_evt_whispers
+					trigger_event = {
+						id = podnagaraja.14
+						days = { 30 90 }
+					}
+				}
+				# The False Necropolis (blocked if warned by wraiths)
+				10 = {
+					trigger = {
+						NOT = { has_character_flag = pilgrimage_evt_false_necropolis }
+						NOT = { has_character_flag = nagaraja_wraith_market_warned }
+					}
+					add_character_flag = pilgrimage_evt_false_necropolis
+					trigger_event = {
+						id = podnagaraja.15
+						days = { 30 90 }
+					}
+				}
+				# A Spectral Anomaly
+				10 = {
+					trigger = { NOT = { has_character_flag = pilgrimage_evt_anomaly } }
+					add_character_flag = pilgrimage_evt_anomaly
+					trigger_event = {
+						id = podnagaraja.16
+						days = { 30 90 }
+					}
+				}
+				# The Wraith Market
+				10 = {
+					trigger = { NOT = { has_character_flag = pilgrimage_evt_wraith_market } }
+					add_character_flag = pilgrimage_evt_wraith_market
+					trigger_event = {
+						id = podnagaraja.17
+						days = { 30 90 }
+					}
+				}
+				# Echoes of the Silk Road
+				10 = {
+					trigger = { NOT = { has_character_flag = pilgrimage_evt_echoes } }
+					add_character_flag = pilgrimage_evt_echoes
+					trigger_event = {
+						id = podnagaraja.18
+						days = { 30 90 }
+					}
+				}
+				# A Fellow Traveler
+				10 = {
+					trigger = { NOT = { has_character_flag = pilgrimage_evt_fellow } }
+					add_character_flag = pilgrimage_evt_fellow
+					trigger_event = {
+						id = podnagaraja.19
+						days = { 30 90 }
+					}
+				}
+			}
+		}
+	}
+}
+
+
+# ===== POOL EVENTS (12-19) =====
+
+# Pool Event 1: Entering the Shadowlands
+podnagaraja.12 = {
+	type = character_event
+	title = podnagaraja.12.t
+	desc = podnagaraja.12.desc
+	theme = vampire
+	override_background = { reference = wilderness }
 
 	left_portrait = {
 		character = root
@@ -109,21 +267,64 @@ podnagaraja.10 = {
 	immediate = {
 	}
 
+	# Option A: Focus on the path (safe)
 	option = {
-		name = podnagaraja.10.a
-		custom_tooltip = podnagaraja.10.a.tt
-		trigger_event = {
-			id = podnagaraja.11
-			days = 14
+		name = podnagaraja.12.a
+	}
+
+	# Option B: Open senses to the dead (Learning check)
+	option = {
+		name = podnagaraja.12.b
+		custom_tooltip = podnagaraja.12.b.tt
+		random = {
+			chance = {
+				value = 40
+				add = {
+					value = learning
+					multiply = 2
+				}
+			}
+			# Success
+			custom_tooltip = podnagaraja.12.b.success
+			add_character_modifier = {
+				modifier = nagaraja_attuned_to_dead_modifier
+				years = 1
+			}
+		}
+		random = {
+			chance = {
+				value = 60
+				subtract = {
+					value = learning
+					multiply = 2
+				}
+				min = 5
+			}
+			# Failure
+			custom_tooltip = podnagaraja.12.b.failure
+			add_stress = minor_stress_gain
+		}
+	}
+
+	after = {
+		hidden_effect = {
+			change_variable = {
+				name = pilgrimage_events_fired
+				add = 1
+			}
+			trigger_event = {
+				id = podnagaraja.11
+				days = { 14 30 }
+			}
 		}
 	}
 }
 
-# Event 2: The Tempest
-podnagaraja.11 = {
+# Pool Event 2: The Tempest
+podnagaraja.13 = {
 	type = character_event
-	title = podnagaraja.11.t
-	desc = podnagaraja.11.desc
+	title = podnagaraja.13.t
+	desc = podnagaraja.13.desc
 	theme = vampire
 	override_background = { reference = nightcamp }
 
@@ -135,37 +336,90 @@ podnagaraja.11 = {
 	immediate = {
 	}
 
-	# Option A: Navigate with Necromancy (safe)
+	# Option A: Press through with discipline (Prowess check)
 	option = {
-		name = podnagaraja.11.a
-		custom_tooltip = podnagaraja.11.a.tt
-		add_stress = minor_stress_gain
-		trigger_event = {
-			id = podnagaraja.12
-			days = 14
+		name = podnagaraja.13.a
+		custom_tooltip = podnagaraja.13.a.tt
+		random = {
+			chance = {
+				value = 40
+				add = {
+					value = prowess
+					multiply = 3
+				}
+			}
+			# Success: no penalty
+			custom_tooltip = podnagaraja.13.a.success
+		}
+		random = {
+			chance = {
+				value = 60
+				subtract = {
+					value = prowess
+					multiply = 3
+				}
+				min = 5
+			}
+			# Failure: stress
+			custom_tooltip = podnagaraja.13.a.failure
+			add_stress = medium_stress_gain
 		}
 	}
 
-	# Option B: Force your way through (risky)
+	# Option B: Use necromancy (Necromancy rank check)
 	option = {
-		name = podnagaraja.11.b
-		custom_tooltip = podnagaraja.11.b.tt
-		random = {
-			chance = 30
-			add_stress = major_stress_gain
+		name = podnagaraja.13.b
+		custom_tooltip = podnagaraja.13.b.tt
+		if = {
+			limit = { has_trait = necromancyadvanced }
+			# Rank 3+: auto-success
+			custom_tooltip = podnagaraja.13.b.success
+			add_prestige = 50
+			add_character_modifier = {
+				modifier = nagaraja_tempered_by_tempest_modifier
+				years = 5
+			}
 		}
-		trigger_event = {
-			id = podnagaraja.12
-			days = 7
+		else = {
+			# Rank 2 or lower: 50/50
+			random = {
+				chance = 50
+				custom_tooltip = podnagaraja.13.b.success
+				add_prestige = 50
+			}
+			random = {
+				chance = 50
+				custom_tooltip = podnagaraja.13.b.failure
+				add_stress = medium_stress_gain
+			}
+		}
+	}
+
+	# Option C: Wait for it to pass (safe)
+	option = {
+		name = podnagaraja.13.c
+		add_stress = minor_stress_gain
+	}
+
+	after = {
+		hidden_effect = {
+			change_variable = {
+				name = pilgrimage_events_fired
+				add = 1
+			}
+			trigger_event = {
+				id = podnagaraja.11
+				days = { 14 30 }
+			}
 		}
 	}
 }
 
-# Event 3: Whispers of the Drowned
-podnagaraja.12 = {
+# Pool Event 3: Whispers of the Drowned
+podnagaraja.14 = {
 	type = character_event
-	title = podnagaraja.12.t
-	desc = podnagaraja.12.desc
+	title = podnagaraja.14.t
+	desc = podnagaraja.14.desc
 	theme = vampire
 	override_background = { reference = sitting_room }
 
@@ -177,98 +431,661 @@ podnagaraja.12 = {
 	immediate = {
 	}
 
-	# Option A: Resist (safer, less reward)
+	# Option A: Command them to guide me (Intrigue check)
 	option = {
-		name = podnagaraja.12.a
-		add_stress = minor_stress_gain
-		trigger_event = {
-			id = podnagaraja.13
-			days = 14
+		name = podnagaraja.14.a
+		custom_tooltip = podnagaraja.14.a.tt
+		random = {
+			chance = {
+				value = 40
+				add = {
+					value = intrigue
+					multiply = 2
+				}
+			}
+			# Success
+			custom_tooltip = podnagaraja.14.a.success
+			add_character_modifier = {
+				modifier = nagaraja_ghost_guided_modifier
+				years = 3
+			}
+		}
+		random = {
+			chance = {
+				value = 60
+				subtract = {
+					value = intrigue
+					multiply = 2
+				}
+				min = 5
+			}
+			# Failure
+			custom_tooltip = podnagaraja.14.a.failure
+			add_stress = minor_stress_gain
 		}
 	}
 
-	# Option B: Listen (riskier, more reward)
+	# Option B: Ignore them and walk on (safe, minor stress)
 	option = {
-		name = podnagaraja.12.b
-		custom_tooltip = podnagaraja.12.b.tt
-		add_character_flag = listened_to_whispers
-		add_learning_lifestyle_xp = 500
-		random = {
-			chance = 25
-			add_stress = major_stress_gain
+		name = podnagaraja.14.b
+		add_stress = minor_stress_gain
+	}
+
+	# Option C: Devour their ectoplasm (feeding)
+	option = {
+		name = podnagaraja.14.c
+		custom_tooltip = podnagaraja.14.c.tt
+		add_stress = minor_stress_loss
+		add_character_flag = nagaraja_devoured_wraith
+		add_character_modifier = {
+			modifier = nagaraja_wraith_devoured_prowess_modifier
+			years = 1
 		}
-		trigger_event = {
-			id = podnagaraja.13
-			days = 14
+	}
+
+	after = {
+		hidden_effect = {
+			change_variable = {
+				name = pilgrimage_events_fired
+				add = 1
+			}
+			trigger_event = {
+				id = podnagaraja.11
+				days = { 14 30 }
+			}
 		}
 	}
 }
 
-# Event 4: Gates of Enoch (Final - 3 options)
-podnagaraja.13 = {
+# Pool Event 4: The False Necropolis
+# Does NOT fire if nagaraja_wraith_market_warned is set
+podnagaraja.15 = {
 	type = character_event
-	window = fullscreen_event
-	title = podnagaraja.13.t
-	desc = podnagaraja.13.desc
+	title = podnagaraja.15.t
+	desc = podnagaraja.15.desc
 	theme = vampire
 	override_background = { reference = throne_room }
+
+	left_portrait = {
+		character = root
+		animation = worry
+	}
 
 	immediate = {
 	}
 
-	# Option A: Claim the Pilgrim of Enoch trait
+	# Option A: Investigate cautiously (Learning check)
 	option = {
-		name = podnagaraja.13.a
-		custom_tooltip = podnagaraja.13.a.tt
-		if = {
-			limit = {
-				NOT = { has_trait = pilgrim_of_enoch }
-			}
-			add_trait = pilgrim_of_enoch
-		}
-		add_prestige = 500
-		if = {
-			limit = { has_character_flag = listened_to_whispers }
-			add_learning_lifestyle_xp = 1000
-		}
-		hidden_effect = {
-			remove_character_flag = listened_to_whispers
-		}
-	}
-
-	# Option B: Absorb raw knowledge (XP instead of trait)
-	option = {
-		name = podnagaraja.13.b
-		add_learning_lifestyle_xp = 3000
-		if = {
-			limit = { has_character_flag = listened_to_whispers }
-			add_learning_lifestyle_xp = 2000
-		}
-		hidden_effect = {
-			remove_character_flag = listened_to_whispers
-		}
-	}
-
-	# Option C: Surrender to the depths (torpor risk)
-	option = {
-		name = podnagaraja.13.c
-		custom_tooltip = podnagaraja.13.c.tt
-		if = {
-			limit = {
-				NOT = { has_trait = pilgrim_of_enoch }
-			}
-			add_trait = pilgrim_of_enoch
-		}
-		add_learning_lifestyle_xp = 3000
-		add_prestige = 500
+		name = podnagaraja.15.a
+		custom_tooltip = podnagaraja.15.a.tt
 		random = {
-			chance = 40
-			custom_tooltip = podnagaraja.13.c.torpor_risk
-			POD_enter_torpor_effect = yes
+			chance = {
+				value = 30
+				add = {
+					value = learning
+					multiply = 3
+				}
+			}
+			# Success: journal modifier + prestige
+			custom_tooltip = podnagaraja.15.a.success
+			add_character_modifier = {
+				modifier = nagaraja_enoch_journal_modifier
+				years = 10
+			}
+			add_prestige = 25
 		}
+		random = {
+			chance = {
+				value = 70
+				subtract = {
+					value = learning
+					multiply = 3
+				}
+				min = 5
+			}
+			# Failure: stress
+			custom_tooltip = podnagaraja.15.a.failure
+			add_stress = minor_stress_gain
+		}
+	}
+
+	# Option B: Avoid it entirely (safe)
+	option = {
+		name = podnagaraja.15.b
+		add_stress = minor_stress_loss
+	}
+
+	# Option C: Destroy it (requires Advanced Necromancy)
+	option = {
+		name = podnagaraja.15.c
+		trigger = {
+			has_trait = necromancyadvanced
+		}
+		add_character_modifier = {
+			modifier = nagaraja_protector_of_blood_modifier
+			years = 20
+		}
+		root.dynasty = {
+			add_dynasty_prestige = 50
+		}
+	}
+
+	after = {
 		hidden_effect = {
-			remove_character_flag = listened_to_whispers
+			change_variable = {
+				name = pilgrimage_events_fired
+				add = 1
+			}
+			trigger_event = {
+				id = podnagaraja.11
+				days = { 14 30 }
+			}
 		}
+	}
+}
+
+# Pool Event 5: A Spectral Anomaly
+podnagaraja.16 = {
+	type = character_event
+	title = podnagaraja.16.t
+	desc = podnagaraja.16.desc
+	theme = vampire
+	override_background = { reference = nightcamp }
+
+	left_portrait = {
+		character = root
+		animation = personality_bold
+	}
+
+	immediate = {
+	}
+
+	# Option A: Go through it (Prowess check, hard)
+	option = {
+		name = podnagaraja.16.a
+		custom_tooltip = podnagaraja.16.a.tt
+		random = {
+			chance = {
+				value = 25
+				add = {
+					value = prowess
+					multiply = 3
+				}
+			}
+			# Success
+			custom_tooltip = podnagaraja.16.a.success
+			add_character_modifier = {
+				modifier = nagaraja_spectral_fortitude_modifier
+				years = 5
+			}
+			add_prestige = 50
+		}
+		random = {
+			chance = {
+				value = 75
+				subtract = {
+					value = prowess
+					multiply = 3
+				}
+				min = 5
+			}
+			# Failure
+			custom_tooltip = podnagaraja.16.a.failure
+			add_stress = medium_stress_gain
+			add_prestige = -25
+		}
+	}
+
+	# Option B: Go around (safe, minor stress)
+	option = {
+		name = podnagaraja.16.b
+		add_stress = minor_stress_gain
+	}
+
+	# Option C: Study the anomaly (Learning check)
+	option = {
+		name = podnagaraja.16.c
+		custom_tooltip = podnagaraja.16.c.tt
+		random = {
+			chance = {
+				value = 40
+				add = {
+					value = learning
+					multiply = 2
+				}
+			}
+			# Success
+			custom_tooltip = podnagaraja.16.c.success
+			add_learning_lifestyle_xp = 500
+		}
+		random = {
+			chance = {
+				value = 60
+				subtract = {
+					value = learning
+					multiply = 2
+				}
+				min = 5
+			}
+			# Failure
+			custom_tooltip = podnagaraja.16.c.failure
+			add_stress = minor_stress_gain
+		}
+	}
+
+	after = {
+		hidden_effect = {
+			change_variable = {
+				name = pilgrimage_events_fired
+				add = 1
+			}
+			trigger_event = {
+				id = podnagaraja.11
+				days = { 14 30 }
+			}
+		}
+	}
+}
+
+# Pool Event 6: The Wraith Market
+podnagaraja.17 = {
+	type = character_event
+	title = podnagaraja.17.t
+	desc = podnagaraja.17.desc
+	theme = vampire
+	override_background = { reference = sitting_room }
+
+	left_portrait = {
+		character = root
+		animation = personality_rational
+	}
+
+	immediate = {
+	}
+
+	# Option A: Trade gold for intelligence
+	option = {
+		name = podnagaraja.17.a
+		remove_short_term_gold = 75
+		add_character_modifier = {
+			modifier = nagaraja_ghost_guided_modifier
+			years = 3
+		}
+		add_character_flag = nagaraja_wraith_market_warned
+	}
+
+	# Option B: Devour one of them
+	option = {
+		name = podnagaraja.17.b
+		custom_tooltip = podnagaraja.17.b.tt
+		add_stress = minor_stress_loss
+		add_character_flag = nagaraja_devoured_wraith
+		add_character_modifier = {
+			modifier = nagaraja_wraith_devoured_prowess_modifier
+			years = 1
+		}
+		add_character_modifier = {
+			modifier = nagaraja_feared_by_dead_modifier
+			years = 10
+		}
+	}
+
+	# Option C: Ignore them and press on
+	option = {
+		name = podnagaraja.17.c
+		add_stress = minor_stress_gain
+	}
+
+	after = {
+		hidden_effect = {
+			change_variable = {
+				name = pilgrimage_events_fired
+				add = 1
+			}
+			trigger_event = {
+				id = podnagaraja.11
+				days = { 14 30 }
+			}
+		}
+	}
+}
+
+# Pool Event 7: Echoes of the Silk Road
+podnagaraja.18 = {
+	type = character_event
+	title = podnagaraja.18.t
+	desc = podnagaraja.18.desc
+	theme = vampire
+	override_background = { reference = wilderness }
+
+	left_portrait = {
+		character = root
+		animation = thinking
+	}
+
+	immediate = {
+	}
+
+	# Option A: Search the ruins (Learning check)
+	option = {
+		name = podnagaraja.18.a
+		custom_tooltip = podnagaraja.18.a.tt
+		random = {
+			chance = {
+				value = 35
+				add = {
+					value = learning
+					multiply = 3
+				}
+			}
+			# Success
+			custom_tooltip = podnagaraja.18.a.success
+			add_learning_lifestyle_xp = 500
+			add_prestige = 25
+			add_stress = minor_stress_loss
+		}
+		random = {
+			chance = {
+				value = 65
+				subtract = {
+					value = learning
+					multiply = 3
+				}
+				min = 5
+			}
+			# Failure
+			custom_tooltip = podnagaraja.18.a.failure
+			add_stress = minor_stress_gain
+		}
+	}
+
+	# Option B: Investigate the ghostly inhabitants (Diplomacy check)
+	option = {
+		name = podnagaraja.18.b
+		custom_tooltip = podnagaraja.18.b.tt
+		random = {
+			chance = {
+				value = 45
+				add = {
+					value = diplomacy
+					multiply = 2
+				}
+			}
+			# Success
+			custom_tooltip = podnagaraja.18.b.success
+			root.dynasty = {
+				add_dynasty_prestige = 30
+			}
+		}
+		random = {
+			chance = {
+				value = 55
+				subtract = {
+					value = diplomacy
+					multiply = 2
+				}
+				min = 5
+			}
+			# Failure
+			custom_tooltip = podnagaraja.18.b.failure
+			add_stress = minor_stress_gain
+		}
+	}
+
+	# Option C: Record what you see and move on (safe)
+	option = {
+		name = podnagaraja.18.c
+		add_learning_lifestyle_xp = 200
+		add_prestige = 10
+	}
+
+	after = {
+		hidden_effect = {
+			change_variable = {
+				name = pilgrimage_events_fired
+				add = 1
+			}
+			trigger_event = {
+				id = podnagaraja.11
+				days = { 14 30 }
+			}
+		}
+	}
+}
+
+# Pool Event 8: A Fellow Traveler
+podnagaraja.19 = {
+	type = character_event
+	title = podnagaraja.19.t
+	desc = podnagaraja.19.desc
+	theme = vampire
+	override_background = { reference = wilderness }
+
+	left_portrait = {
+		character = root
+		animation = personality_content
+	}
+
+	immediate = {
+	}
+
+	# Option A: Share intelligence freely
+	option = {
+		name = podnagaraja.19.a
+		custom_tooltip = podnagaraja.19.a.tt
+		add_character_modifier = {
+			modifier = nagaraja_well_informed_modifier
+			years = 5
+		}
+		# 15% chance of spy follow-up
+		hidden_effect = {
+			random = {
+				chance = 15
+				trigger_event = {
+					id = podnagaraja.21
+					days = { 30 90 }
+				}
+			}
+		}
+	}
+
+	# Option B: Trade information for information (Intrigue check)
+	option = {
+		name = podnagaraja.19.b
+		custom_tooltip = podnagaraja.19.b.tt
+		random = {
+			chance = {
+				value = 50
+				add = {
+					value = intrigue
+					multiply = 2
+				}
+			}
+			# Success
+			custom_tooltip = podnagaraja.19.b.success
+			add_character_modifier = {
+				modifier = nagaraja_well_informed_short_modifier
+				years = 3
+			}
+		}
+		random = {
+			chance = {
+				value = 50
+				subtract = {
+					value = intrigue
+					multiply = 2
+				}
+				min = 5
+			}
+			# Failure
+			custom_tooltip = podnagaraja.19.b.failure
+			add_stress = minor_stress_gain
+		}
+	}
+
+	# Option C: Decline her company (safe)
+	option = {
+		name = podnagaraja.19.c
+		add_stress = minor_stress_loss
+	}
+
+	# Option D: Share Viscus supplies (costs gold, generates goodwill)
+	option = {
+		name = podnagaraja.19.d
+		remove_short_term_gold = 50
+		custom_tooltip = podnagaraja.19.d.tt
+		root.dynasty = {
+			add_dynasty_prestige = 25
+		}
+	}
+
+	after = {
+		hidden_effect = {
+			change_variable = {
+				name = pilgrimage_events_fired
+				add = 1
+			}
+			trigger_event = {
+				id = podnagaraja.11
+				days = { 14 30 }
+			}
+		}
+	}
+}
+
+
+# ===== FINAL EVENT =====
+
+# Gates of Enoch — always fires last after all pool events
+podnagaraja.20 = {
+	type = character_event
+	window = fullscreen_event
+	title = podnagaraja.20.t
+	desc = podnagaraja.20.desc
+	theme = vampire
+	override_background = { reference = throne_room }
+
+	immediate = {
+		# Cleanup all pool event flags and journey-scoped flags
+		hidden_effect = {
+			remove_character_flag = pilgrimage_evt_entering
+			remove_character_flag = pilgrimage_evt_tempest
+			remove_character_flag = pilgrimage_evt_whispers
+			remove_character_flag = pilgrimage_evt_false_necropolis
+			remove_character_flag = pilgrimage_evt_anomaly
+			remove_character_flag = pilgrimage_evt_wraith_market
+			remove_character_flag = pilgrimage_evt_echoes
+			remove_character_flag = pilgrimage_evt_fellow
+			remove_character_flag = nagaraja_devoured_wraith
+			remove_character_flag = nagaraja_wraith_market_warned
+			remove_variable = pilgrimage_events_fired
+			remove_variable = pilgrimage_events_target
+		}
+	}
+
+	# Option A: Enter and pay respects to the Del'Roh (trait + prestige)
+	option = {
+		name = podnagaraja.20.a
+		custom_tooltip = podnagaraja.20.a.tt
+		if = {
+			limit = {
+				NOT = { has_trait = pilgrim_of_enoch }
+			}
+			add_trait = pilgrim_of_enoch
+		}
+		add_prestige = 200
+		root.dynasty = {
+			add_dynasty_prestige = 200
+		}
+	}
+
+	# Option B: Study the libraries of Brujah (large XP)
+	option = {
+		name = podnagaraja.20.b
+		add_learning_lifestyle_xp = 3000
+		add_prestige = 100
+	}
+
+	# Option C: Remain in Enoch and serve (torpor + trait + dynasty prestige)
+	option = {
+		name = podnagaraja.20.c
+		custom_tooltip = podnagaraja.20.c.tt
+		if = {
+			limit = {
+				NOT = { has_trait = pilgrim_of_enoch }
+			}
+			add_trait = pilgrim_of_enoch
+		}
+		root.dynasty = {
+			add_dynasty_prestige = 500
+		}
+		POD_enter_torpor_effect = yes
+	}
+
+	after = {
+		POD_end_journey_effect = yes
+	}
+}
+
+
+# ===== FOLLOW-UP EVENTS =====
+
+# Fellow Traveler spy follow-up (15% chance from podnagaraja.19 option A)
+podnagaraja.21 = {
+	type = character_event
+	title = podnagaraja.21.t
+	desc = podnagaraja.21.desc
+	theme = vampire
+	override_background = { reference = alley_night }
+
+	left_portrait = {
+		character = root
+		animation = worry
+	}
+
+	trigger = {
+		is_alive = yes
+	}
+
+	immediate = {
+	}
+
+	# Option A: Investigate the betrayal (Intrigue check)
+	option = {
+		name = podnagaraja.21.a
+		custom_tooltip = podnagaraja.21.a.tt
+		random = {
+			chance = {
+				value = 40
+				add = {
+					value = intrigue
+					multiply = 3
+				}
+			}
+			# Success: detect the deception
+			custom_tooltip = podnagaraja.21.a.success
+			add_stress = minor_stress_gain
+		}
+		random = {
+			chance = {
+				value = 60
+				subtract = {
+					value = intrigue
+					multiply = 3
+				}
+				min = 5
+			}
+			# Failure: prestige loss
+			custom_tooltip = podnagaraja.21.a.failure
+			add_prestige = -100
+			add_stress = medium_stress_gain
+		}
+	}
+
+	# Option B: Ignore the signs (safe, minor stress)
+	option = {
+		name = podnagaraja.21.b
+		add_stress = minor_stress_gain
 	}
 }
 

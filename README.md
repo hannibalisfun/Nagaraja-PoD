@@ -23,15 +23,30 @@ A major objective decision allowing Nagaraja rulers to claim dominance over the 
 
 ---
 
-### 2. Pilgrimage to Enoch
+### 2. Pilgrimage to Enoch (Journey)
 
-A multi-stage event chain (4 events) representing a spiritual journey through the Underworld to the ghost-city of Enoch. Navigate the Shadowlands, survive the Tempest, resist spectral whispers, and reach the gates of Enoch for powerful rewards.
+A POD Journey representing a once-in-a-lifetime spiritual pilgrimage through the Underworld to the ghost-city of Enoch. The journey features a planning phase (~2 years) followed by a travel phase where 4-5 encounters are randomly selected from a pool of 8 modular events, culminating in a fixed finale at the Gates of Enoch.
 
-**Requirements:** Nagaraja follower of Talmahera, Nagaraja Legacy 3 perk, advanced necromancy, active coterie. Costs 300 gold with a 100-year cooldown.
+**Requirements:** Nagaraja follower of Talmahera, Nagaraja Legacy 3 perk, advanced necromancy. Costs 300 gold. Can only be undertaken once per character.
 
-**Rewards:**
-- Pilgrim of Enoch trait (+3 Learning, +0.25 necromancy lifestyle XP, +10 dread baseline)
-- Up to 3,000 learning XP depending on choices
+**Journey Structure:**
+- **Planning Phase:** ~2 years of preparation
+- **Travel Phase:** 4-5 randomly selected pool events spaced over ~1-2.5 years, followed by the Gates of Enoch finale
+
+**Pool Events (8 total, 4-5 selected per journey):**
+- **Entering the Shadowlands** — Open your senses to the dead (Learning check) for the Attuned to the Dead modifier
+- **The Tempest** — Brave a spectral storm through prowess, necromancy, or patience
+- **Whispers of the Drowned** — Command lost wraiths (Intrigue check), ignore them, or devour their ectoplasm
+- **The False Necropolis** — Investigate a trap (Learning check), avoid it, or destroy it with advanced necromancy. Blocked if warned by the Wraith Market
+- **A Spectral Anomaly** — Push through (Prowess check), go around, or study it (Learning check)
+- **The Wraith Market** — Trade gold for intelligence and a warning, devour a wraith for prowess and dread, or pass through
+- **Echoes of the Silk Road** — Search ghostly ruins (Learning check), speak with inhabitants (Diplomacy check), or record your findings
+- **A Fellow Traveler** — Share intelligence freely (with a 15% spy follow-up risk), trade cautiously (Intrigue check), decline, or share supplies
+
+**Final Event — Gates of Enoch:**
+- Pay respects to the Del'Roh (Pilgrim of Enoch trait + 200 prestige + 200 renown)
+- Study the libraries of Brujah (3,000 learning XP + 100 prestige)
+- Remain and serve in Enoch (Pilgrim of Enoch trait + 500 renown + torpor)
 
 ---
 
@@ -99,13 +114,15 @@ A decision-triggered event chain to recruit a ghoul practitioner of Itarajana (H
 nagaraja_submod/
 ├── common/
 │   ├── character_interactions/   # Send Childe interaction
+│   ├── culture/innovations/      # Journey jank innovations (icon/illustration)
 │   ├── decisions/                # 4 gameplay decisions
-│   ├── modifiers/                # 9 character/event modifiers
+│   ├── modifiers/                # 19 character/event modifiers
 │   ├── nicknames/                # Scourge of Sutekh nickname
 │   ├── on_action/                # Flesh-Eater random event trigger
 │   ├── scripted_character_templates/  # Itarajana Sorcerer template
+│   ├── scripted_guis/            # Journey SGUIs (requirements, on_end, travel_phase)
 │   └── traits/                   # Pilgrim of Enoch & Itarajana Sorcerer traits
-├── events/                       # 13 events across all feature chains
+├── events/                       # 21 events across all feature chains
 ├── localization/english/         # All English localization files
 ├── descriptor.mod
 └── nagaraja_submod.mod

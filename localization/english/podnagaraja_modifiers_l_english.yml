@@ -9,3 +9,18 @@
  endure_hunger_modifier: "Enduring the Hunger"
  evidence_discovered_modifier: "Evidence of the Beast"
  itarajana_research_modifier: "Itarajana Research"
+
+ # ============================
+ # Feature 2: Pilgrimage to Enoch (Journey Modifiers)
+ # ============================
+
+ nagaraja_attuned_to_dead_modifier: "Attuned to the Dead"
+ nagaraja_tempered_by_tempest_modifier: "Tempered by the Tempest"
+ nagaraja_ghost_guided_modifier: "Ghost-Guided"
+ nagaraja_well_informed_modifier: "Well Informed"
+ nagaraja_well_informed_short_modifier: "Well Informed"
+ nagaraja_feared_by_dead_modifier: "Feared by the Dead"
+ nagaraja_protector_of_blood_modifier: "Protector of the Blood"
+ nagaraja_enoch_journal_modifier: "Pilgrim's Journal"
+ nagaraja_spectral_fortitude_modifier: "Spectral Fortitude"
+ nagaraja_wraith_devoured_prowess_modifier: "Wraith-Fed"
